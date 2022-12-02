@@ -21,7 +21,7 @@ export PATH=$JAVA_HOME/bin:$PATH
 ```shell script
 
 ## install gcc and libraries to build arrow
-apt-get update && apt-get install -y sudo locales wget tar tzdata git ccache cmake ninja-build build-essential llvm-11-dev clang-11 libiberty-dev libdwarf-dev libre2-dev libz-dev libssl-dev libboost-all-dev libcurl4-openssl-dev openjdk-8-jdk maven
+apt-get update && sudo apt-get install -y locales wget tar tzdata git ccache cmake ninja-build build-essential llvm-11-dev clang-11 libiberty-dev libdwarf-dev libre2-dev libz-dev libssl-dev libboost-all-dev libcurl4-openssl-dev openjdk-8-jdk maven
 
 ## make sure jdk8 is used
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
