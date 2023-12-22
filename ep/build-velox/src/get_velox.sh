@@ -121,14 +121,14 @@ function process_setup_ubuntu {
 }
 
 function process_setup_al2023 {
-    sudo dnf -y install patch
-    sudo dnf -y install protobuf-compiler protobuf protobuf-devel
-    sudo dnf -y install protobuf-c-compiler protobuf-c-devel protobuf-c protobuf-static python3-protobuf
-    deps_sha=2d174f40bd2b20ce418a5deaa0349c8833c15a87
-    git remote add estoianovici https://github.com/estoianovici/velox.git
-    git fetch estoianovici
-    git checkout -b local_build
-    git cherry-pick $deps_sha
+  deps_sha=2d174f40bd2b20ce418a5deaa0349c8833c15a87
+  git remote add estoianovici https://github.com/estoianovici/velox.git
+  git fetch estoianovici
+  git checkout -b local_build
+  git cherry-pick $deps_sha
+  protobuf_packages="protobuf-compiler protobuf protobuf-devel"
+  protobuf_c_packages="protobuf-c-compiler protobuf-c-devel protobuf-c protobuf-static python3-protobuf"
+  sed -i "s/dnf install -y \\/dnf install -y \\\n    patch \\\n    $protobuf_packages \\\n    $protobuf_c_packages \\/" scripts/setup-amazon-linux-2023.sh
 }
 
 function process_setup_centos8 {
