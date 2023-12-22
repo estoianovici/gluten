@@ -120,6 +120,16 @@ function process_setup_ubuntu {
 
 }
 
+function process_setup_al2023 {
+    sudo dnf -y install patch
+    sudo dnf -y install protobuf-compiler protobuf protobuf-devel
+    deps_sha=2d174f40bd2b20ce418a5deaa0349c8833c15a87
+    git remote add estoianovici https://github.com/estoianovici/velox.git
+    git fetch estoianovici
+    git checkout -b local_build
+    git cherry-pick $deps_sha
+}
+
 function process_setup_centos8 {
   # Allows other version of git already installed.
   if [ -z "$(which git)" ]; then
@@ -291,6 +301,14 @@ function setup_linux {
       3.2) process_setup_tencentos32 ;;
       *)
         echo "Unsupport tencentos version: $LINUX_VERSION_ID"
+        exit 1
+      ;;
+    esac
+  elif [[ "$LINUX_DISTRIBUTION" == "amzn" ]]; then
+    case "$LINUX_VERSION_ID" in
+      2023) process_setup_al2023 ;;
+      *)
+        echo "Unsupport amzn version: $LINUX_VERSION_ID"
         exit 1
       ;;
     esac

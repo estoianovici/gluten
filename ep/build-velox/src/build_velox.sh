@@ -230,6 +230,14 @@ function setup_linux {
       exit 1
       ;;
     esac
+  elif [[ "$LINUX_DISTRIBUTION" == "amzn" ]]; then
+    case "$LINUX_VERSION_ID" in
+    2023) scripts/setup-amazon-linux-2023.sh ;;
+    *)
+      echo "Unsupported tencentos version: $LINUX_VERSION_ID"
+      exit 1
+      ;;
+    esac
   elif [[ "$LINUX_DISTRIBUTION" == "tencentos" ]]; then
     case "$LINUX_VERSION_ID" in
     3.2) scripts/setup-centos8.sh ;;
