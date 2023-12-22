@@ -123,6 +123,7 @@ function process_setup_ubuntu {
 function process_setup_al2023 {
     sudo dnf -y install patch
     sudo dnf -y install protobuf-compiler protobuf protobuf-devel
+    sudo dnf -y install protobuf-c-compiler protobuf-c-devel protobuf-c protobuf-static python3-protobuf
     deps_sha=2d174f40bd2b20ce418a5deaa0349c8833c15a87
     git remote add estoianovici https://github.com/estoianovici/velox.git
     git fetch estoianovici
